@@ -10,7 +10,7 @@ coordinate_pattern_regex: str = (r'([NSns])((?:[ ]*)(?:\([\wÆØÅæøå+\-\*\/\
 
 
 def formula_cleanup(coordinate_formula: str) -> str:
-    return re.sub(r'^a-zæøåA-ZÆØÅ\.\d \(\)+\-*\/]', '', coordinate_formula)
+    return re.sub(r'^a-zæøåA-ZÆØÅ\.\d \(\)+\-*\/]', '', coordinate_formula).upper()
 
 
 def validate_coordinate_formula(coordinate_formula: str) -> list | None:
