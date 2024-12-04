@@ -1,5 +1,5 @@
 import re
-import folium
+#import folium
 
 
 degrees_minutes_regex: str = r"([NS])[ ]?(\d{1,3}).+?([0-5]\d)\.(\d{3}).+([EW])[ ]?(\d{1,3}).+?([0-5]\d)\.(\d{3}).*"
@@ -37,9 +37,9 @@ def get_coordinate_notations(degrees_minutes: str) -> dict:
     return notations
 
 
-def show_on_map(coordinate: str, zoom: int = 13) -> folium.Map:
-    notations = get_coordinate_notations(coordinate)
-    location = [notations['degrees']['lat'], notations['degrees']['long']]
-    m = folium.Map(location=location, zoom_start=zoom)
-    folium.Marker(location, popup='Beregnet koordinat').add_to(m)
-    return m
+# def show_on_map(coordinate: str, zoom: int = 13) -> folium.Map:
+#     notations = get_coordinate_notations(coordinate)
+#     location = [notations['degrees']['lat'], notations['degrees']['long']]
+#     m = folium.Map(location=location, zoom_start=zoom)
+#     folium.Marker(location, popup='Beregnet koordinat').add_to(m)
+#     return m
