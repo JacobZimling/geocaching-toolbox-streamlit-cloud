@@ -68,5 +68,5 @@ if numbers_found and coordinate_formula:
     # TODO: Calculate checksum and reduced checksum
 
     # DONE: Show on map
-    if gps.is_coordinate(result_coordinate):
-        st_data = st_folium(gps.show_on_map(result_coordinate, zoom=14))
+    # if gps.is_coordinate(result_coordinate):
+    #     st_data = st_folium(gps.show_on_map(result_coordinate, zoom=14))
