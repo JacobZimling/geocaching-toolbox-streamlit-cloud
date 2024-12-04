@@ -3,7 +3,7 @@ from modules import gade
 from modules import toolbox
 from modules import gpscoordinates as gps
 import pandas as pd
-# from streamlit_folium import st_folium
+from streamlit_folium import st_folium
 
 # DONE: Handle regex matching returning an error - try
 # TODO: GitHub bug reporting
@@ -68,5 +68,5 @@ if numbers_found and coordinate_formula:
     # TODO: Calculate checksum and reduced checksum
 
     # DONE: Show on map
-    # if gps.is_coordinate(result_coordinate):
-    #     st_data = st_folium(gps.show_on_map(result_coordinate, zoom=14))
+    if gps.is_coordinate(result_coordinate):
+        st_data = st_folium(gps.show_on_map(result_coordinate, zoom=14))
