@@ -13,13 +13,13 @@ toolbox.toolbox_header("Beregn Gade")
 numbers_found = st.text_input(
     label="Indtast de fundne tal. Bogstaver konverteres til deres nummer i alfabetet.",
     placeholder="Indtast de fundne tal",
-    value="1535114"
+    # value="1535114"
 )
 
 coordinate_formula = st.text_input(
     label="Indtast formlen til at udregne koordinatet",
     placeholder="Nnn nn.nnn Ennn nn.nnn",
-    value="N 55.38.(1*(J+A))EI E 012 16.JEK"
+    # value="N 55.38.(1*(J+A))EI E 012 16.JEK"
     # value="D 55 38.JEI E 012 16.JEK"
 )
 
