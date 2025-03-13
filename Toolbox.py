@@ -1,4 +1,4 @@
-from modules import toolbox.py
+from modules import toolbox
 
 
 toolbox.toolbox_header("Velkommen til toolbox'en")
