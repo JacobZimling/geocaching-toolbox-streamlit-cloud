@@ -10,7 +10,7 @@ coordinate_pattern_regex: str = (r'([NSns])((?:[ ]*)(?:\([\wÆØÅæøå+\-\*\/\
 
 
 def formula_cleanup(coordinate_formula: str) -> str:
-    return re.sub(r'^a-zæøåA-ZÆØÅ\.\d \(\)+\-*\/]', '', coordinate_formula).upper()
+    return re.sub(r'^a-zæøåA-ZÆØÅ\.\d \(\)+-*/]', '', coordinate_formula).upper()
 
 
 def validate_coordinate_formula(coordinate_formula: str) -> list | None:
@@ -56,12 +56,25 @@ def sort_numbers_found(numbers_found: str) -> dict:
     return {keys[i]: numbers[i] for i in range(min(len(keys), len(numbers)))}
 
 
-def substitute_numbers(coordinate_formula_parts: list, all_numbers: dict) -> list:
-    for part_no in (1, 4):
-        for letter in all_numbers:
-            if letter in coordinate_formula_parts[part_no]:
-                coordinate_formula_parts[part_no] = coordinate_formula_parts[part_no].replace(letter, all_numbers[letter])
-    return coordinate_formula_parts
+def calculate_coordinate(coordinate_formula_parts: list, all_numbers: dict) -> str:
+    parts = list()
+    part_no = 0
+    for part in coordinate_formula_parts:
+        if part_no in (1, 4):
+            # Substitute numbers in coordinate formula
+            # Resolve formula elements containing calculations
+            parts.append(resolve_calculations(substitute_numbers(part, all_numbers)))
+        else:
+            parts.append(part)
+        part_no = part_no+1
+    return ''.join(parts)
+
+
+def substitute_numbers(text_with_variables: str, number_mapping: dict) -> str:
+    for letter in number_mapping:
+        if letter in text_with_variables.upper():
+            text_with_variables = text_with_variables.replace(letter, number_mapping[letter]).replace(letter.lower(), number_mapping[letter])
+    return text_with_variables
 
 
 def calculation_parser(expr: str) -> list:
@@ -88,15 +101,16 @@ def calculation_parser(expr: str) -> list:
     return items
 
 
-def resolve_calculations(coordinate_formula_parts: list) -> str:
-    for part in coordinate_formula_parts:
-        if not re.search(r'[+\-\*\/]', part) is None:
-            calculations = calculation_parser(part)
-            for calculation in calculations:
-                result = ''
-                if not re.search(r'[+\-\*\/]', calculation) is None:
-                    result = str(eval(calculation))
-                    calculations = list(map(lambda x: x.replace(calculation, result), calculations))
-
-            coordinate_formula_parts = list(map(lambda x: x.replace(part, ''.join(calculations)), coordinate_formula_parts))
-    return ''.join(coordinate_formula_parts)
+def resolve_calculations(calculation_string: str) -> str:
+    # result = calculation_string
+    if not re.search(r'[+\-*/]', calculation_string) is None:
+        calculations = calculation_parser(calculation_string)
+        for calculation in calculations:
+            result = ''
+            if not re.search(r'[+\-*/]', calculation) is None:
+                result = str(eval(calculation))
+                calculations = list(map(lambda x: x.replace(calculation, result), calculations))
+        return ''.join(calculations)
+    else:
+        return calculation_string
+    # return ''.join(coordinate_formula_parts)
