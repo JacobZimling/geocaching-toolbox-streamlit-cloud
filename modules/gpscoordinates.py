@@ -41,7 +41,7 @@ def get_coordinate_notations(degrees_minutes: str) -> dict:
 def show_on_map(coordinate: str, zoom: int = 13) -> folium.Map:
     notations = get_coordinate_notations(coordinate)
     location = [notations['degrees']['lat'], notations['degrees']['long']]
-    m = folium.Map(location=location, zoom_start=zoom)
+    m = folium.Map(location=location, zoom_start=zoom, height=300, width=300)
     folium.Marker(location, popup='Beregnet koordinat').add_to(m)
     return m
 
