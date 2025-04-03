@@ -52,6 +52,7 @@ if numbers_found and coordinate_formula:
     st.write('Alle tal til formlen')
     df = pd.DataFrame(data=[all_numbers.values()], columns=list(all_numbers.keys()))
     st.dataframe(df, hide_index=True)
+    st.table(df)
 
     # TODO: Check if number of numbers match formula
     # Check if # numbers found matches pattern
