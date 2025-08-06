@@ -41,8 +41,8 @@ if numbers_found and coordinate_formula:
     coordinate_formula = gade.formula_cleanup(coordinate_formula)
     coordinate_formula_parts = gade.validate_coordinate_formula(coordinate_formula)
     if coordinate_formula_parts is None:
-        st.write('Koordinatformlen kunne ikke valideres.')
-        exit()
+        st.warning('Koordinatformlen kunne ikke valideres.')
+        st.stop()
 
     # Calculate numbers for Gade calculation
     all_numbers = gade.sort_numbers_found(numbers_found)
@@ -83,3 +83,4 @@ if numbers_found and coordinate_formula:
         folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
 toolbox.toolbox_feedback()
+
