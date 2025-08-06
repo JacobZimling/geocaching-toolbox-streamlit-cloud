@@ -73,6 +73,8 @@ if numbers_found and coordinate_formula:
     # TODO: Change font to default app font
     st.write('Beregnet koordinat')
     st.code(result_coordinate, language=None)
+    if not result_is_coordinate:
+        st.stop()
 
     # TODO: Calculate checksum and reduced checksum
     st.write('Tværsummer')
@@ -83,4 +85,5 @@ if numbers_found and coordinate_formula:
         folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
 toolbox.toolbox_feedback()
+
 
