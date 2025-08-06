@@ -78,7 +78,7 @@ if numbers_found and coordinate_formula:
     copy_button(
         result_coordinate,
         icon='st',
-        key='result_coordinate,
+        key='result_coordinate',
     )
     if not result_is_coordinate:
         st.stop()
@@ -93,6 +93,7 @@ if numbers_found and coordinate_formula:
             folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
 toolbox.toolbox_feedback()
+
 
 
 
