@@ -81,9 +81,11 @@ if numbers_found and coordinate_formula:
     st.table(gps.coordinate_sum_of_digits(result_coordinate))
 
     # DONE: Show on map
-    if gps.is_coordinate(result_coordinate):
-        folium_static(gps.show_on_map(result_coordinate, zoom=14))
+    with st.expander("Vis på kort", icon=":material/map:"):
+        if gps.is_coordinate(result_coordinate):
+            folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
 toolbox.toolbox_feedback()
+
 
 
