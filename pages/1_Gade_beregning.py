@@ -5,7 +5,7 @@ from modules import gpscoordinates as gps
 import pandas as pd
 from streamlit_folium import folium_static
 import platform
-#from st_copy import copy_button
+from st_copy import copy_button
 
 # DONE: Handle regex matching returning an error - try
 # TODO: GitHub bug reporting
@@ -88,6 +88,7 @@ if numbers_found and coordinate_formula:
             folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
 toolbox.toolbox_feedback()
+
 
 
 
