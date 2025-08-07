@@ -73,8 +73,8 @@ if numbers_found and coordinate_formula:
     # Display result coordinate
     # TODO: Change font to default app font
     st.write('Beregnet koordinat')
-    st.write(result_coordinate, language=None)
-    copy_button(result_coordinate, icon='st', tooltip="Kopier koordinat til udklipsholder", copied_label="Koordinat kopieret...")
+    st.code(result_coordinate, language=None)
+    #copy_button(result_coordinate, icon='st', tooltip="Kopier koordinat til udklipsholder", copied_label="Koordinat kopieret...")
     if not result_is_coordinate:
         st.stop()
 
@@ -88,6 +88,7 @@ if numbers_found and coordinate_formula:
             folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
 toolbox.toolbox_feedback()
+
 
 
 
