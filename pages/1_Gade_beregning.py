@@ -87,7 +87,8 @@ if numbers_found and coordinate_formula:
         if gps.is_coordinate(result_coordinate):
             folium_static(gps.show_on_map(result_coordinate, zoom=14))
 
-toolbox.toolbox_feedback()
+#toolbox.toolbox_feedback()
+
 
 
 
